@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VARC Sectional Marks</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="varcChart"></canvas>
+    </div>
+
+    <script>
+        const data = {
+            labels: ['Sectional 1', 'Sectional 2', 'Sectional 3'],
+            datasets: [
+                {
+                    label: 'Bar Chart',
+                    data: [36, 59, 53],
+                    backgroundColor: [
+                        'rgba(75, 0, 130, 0.8)',  // Dark Purple
+                        'rgba(220, 20, 60, 0.8)',  // Red
+                        'rgba(0, 0, 205, 0.8)'     // Blue
+                    ],
+                    borderColor: [
+                        'rgba(75, 0, 130, 1)',     // Dark Purple
+                        'rgba(220, 20, 60, 1)',    // Red
+                        'rgba(0, 0, 205, 1)'       // Blue
+                    ],
+                    borderWidth: 1,
+                    type: 'bar'
+                },
+                {
+                    label: 'Line Chart',
+                    data: [36, 59, 53],
+                    borderColor: 'rgba(64, 64, 64, 0.7)',  // Lighter dark color
+                    borderWidth: 3,
+                    type: 'line',
+                    tension: 0.3,
+                    pointBackgroundColor: 'white',
+                    pointBorderColor: 'rgba(64, 64, 64, 0.9)',  // Matching point border color
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    fill: false
+                }
+            ]
+        };
+
+        const config = {
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Total Marks',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Sectional',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'VARC Sectional Performance',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        padding: {
+                            top: 10,
+                            bottom: 20
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Create the chart
+        const ctx = document.getElementById('varcChart').getContext('2d');
+        new Chart(ctx, config);
+    </script>
+</body>
+</html>
